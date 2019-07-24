@@ -55,7 +55,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
   }
 
   checkIfAllIsAnswered() {
-    this.isPageIncomplete = this.questions.some(question => question.chosenAnswer === null);
+    this.isPageIncomplete = this.questions.some(question => !!!question.chosenAnswer);
   }
 
   ngOnDestroy() {

@@ -12,21 +12,18 @@ export class QuizService {
     {
       id: 0,
       question: 'pregunta numero uno',
-      typeOfQuestion: QuestionType.RADIO,
       chosenAnswer: null,
       answers: [{ id: 0, answer: 'opcion 1' }, { id: 1, answer: 'opcion 2' }]
     },
     {
       id: 1,
       question: 'pregunta numero dos',
-      typeOfQuestion: QuestionType.RADIO,
       chosenAnswer: null,
       answers: [{ id: 0, answer: 'opcion 1' }, { id: 1, answer: 'opcion 2' }]
     },
     {
       id: 2,
       question: 'pregunta numero tres',
-      typeOfQuestion: QuestionType.RADIO,
       chosenAnswer: null,
       answers: [{ id: 0, answer: 'opcion 1' }, { id: 1, answer: 'opcion 2' }]
     }
@@ -35,7 +32,7 @@ export class QuizService {
   getQuestions(): Observable<any> {
     return of(this.mockData).pipe(delay(1000));
   }
-  
+
   getAnswers(questionSection): number[] {
     let answers = [];
     for (const key in questionSection) {
@@ -67,7 +64,6 @@ export class QuizService {
 export interface QuizQuestion {
   id: number;
   question: string;
-  typeOfQuestion: QuestionType;
   answers: QuizAnswer[];
   chosenAnswer: number;
 }
@@ -75,8 +71,4 @@ export interface QuizQuestion {
 export interface QuizAnswer {
   id: number;
   answer: string;
-}
-
-export enum QuestionType {
-  'RADIO'
 }

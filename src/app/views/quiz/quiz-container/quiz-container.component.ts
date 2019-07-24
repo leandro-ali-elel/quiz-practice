@@ -19,7 +19,6 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
   currentPage$ = new BehaviorSubject(this.currentPage);
 
   loading = true;
-  answers: { [id: string]: QuizAnswer };
   isPageIncomplete = true;
 
   constructor(private quizService: QuizService, private cdr: ChangeDetectorRef) { }
@@ -31,6 +30,7 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
       finalize(() => this.loading = false)
     ).subscribe(sections => {
       this.questionSection = sections;
+      this.cdr.markForCheck();
       this.nextPage();
     });
 
@@ -42,7 +42,6 @@ export class QuizContainerComponent implements OnInit, OnDestroy {
   nextPage() {
     this.currentPage++;
     this.currentPage$.next(this.currentPage);
-    this.cdr.markForCheck();
   }
 
   backPage() {

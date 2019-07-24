@@ -1,0 +1,16 @@
+<div class="container">
+  <div *ngIf="!loading">
+    <h1>Formulario:</h1>
+    <app-quiz-section [questions]="questions" (changeTriggered)="checkIfAllIsAnswered($event)"></app-quiz-section>
+
+    <button [disabled]="currentPage === 1" (click)="backPage()">back page</button>
+    <button *ngIf="currentPage !== pagesQuantity; else completed" [disabled]="isPageIncomplete"
+      (click)="nextPage()">next page</button>
+
+    <ng-template #completed>
+      <button [disabled]="isPageIncomplete" type="submit" (click)="submitQuiz()">Submit</button>
+
+    </ng-template>
+    current page: {{currentPage}}
+  </div>
+</div>
